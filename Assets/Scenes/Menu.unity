@@ -505,9 +505,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1548137843}
+  buttonContainerCanvasGroup: {fileID: 0}
   fadeIn: 0
   fadeOut: 1
-  TimeToFade: 3
+  timeToFade: 3
 --- !u!1 &617318256
 GameObject:
   m_ObjectHideFlags: 0

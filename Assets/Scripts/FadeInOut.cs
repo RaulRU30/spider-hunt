@@ -6,15 +6,22 @@ public class FadeInOut : MonoBehaviour
 {
 
     public CanvasGroup canvasGroup;
+    public CanvasGroup uiCanvasGroup;
     public bool fadeIn = false;
     public bool fadeOut = false;
 
-    public float TimeToFade;
-    private float fadeSpeed;
+    public float timeToFade;
+    private float _fadeSpeed;
+    private bool _isUiCanvasGroupNotNull;
 
     void Start()
     {
-        fadeSpeed = 1f / TimeToFade;
+        _isUiCanvasGroupNotNull = uiCanvasGroup != null;
+        if (_isUiCanvasGroupNotNull)
+        {
+            uiCanvasGroup.alpha = 0;
+        }
+        _fadeSpeed = 1f / timeToFade;
     }
 
     void Update()
@@ -23,7 +30,7 @@ public class FadeInOut : MonoBehaviour
         {
             if (canvasGroup.alpha < 1)
             {
-                canvasGroup.alpha += fadeSpeed  * Time.deltaTime;
+                canvasGroup.alpha += _fadeSpeed  * Time.deltaTime;
                 if(canvasGroup.alpha >= 1)
                 {
                     fadeIn = false;
@@ -35,14 +42,17 @@ public class FadeInOut : MonoBehaviour
         {
             if (canvasGroup.alpha > 0)
             {
-                canvasGroup.alpha -= fadeSpeed  * Time.deltaTime;
+                canvasGroup.alpha -= _fadeSpeed  * Time.deltaTime;
                 if(canvasGroup.alpha == 0)
                 {
                     fadeOut = false;
                 }
             }
+            if (_isUiCanvasGroupNotNull && uiCanvasGroup.alpha < 1)
+            {
+                uiCanvasGroup.alpha += _fadeSpeed  * Time.deltaTime;
+            }
         }
-
     }
     
     public void FadeIn()
