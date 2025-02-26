@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: fb06a716123a1a94bb1d7809ee8d9729
+  - enabled: 1
+    path: Assets/Scenes/Game_Raul.unity
+    guid: 72c920de6a99c81408a3fa6c2668a090
   m_configObjects: {}

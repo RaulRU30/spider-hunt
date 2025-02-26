@@ -18,17 +18,18 @@ public class ChangeScene : MonoBehaviour
 
     }
 
-    private IEnumerator ChangeSceneCoroutine()
+    private IEnumerator ChangeSceneCoroutine(string sceneName)
     {
         fade.FadeIn();
         yield return new WaitForSeconds(fade.timeToFade);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(sceneName);
     }
     
-    public void ChangeToScene()
+    public void ChangeToScene(string sceneName)
     { 
-        StartCoroutine(ChangeSceneCoroutine());
+        StartCoroutine(ChangeSceneCoroutine(sceneName));
     }
+    
     
     public void ExitGame()
     {
