@@ -668,7 +668,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 0}
   enemyAnimator: {fileID: 7625736985352960938}
-  deathAnimationDuration: 2
+  deathSound: {fileID: 8300000, guid: 2e22bb387a43a8f43af8d3f2b32f4c84, type: 3}
+  deathVolume: 0.8
 --- !u!95 &7625736985352960938
 Animator:
   serializedVersion: 3

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class TimeManager : MonoBehaviour
     
     public TMP_Text timeText;
     private bool _istimeTextNotNull;
+    
+    public UnityEvent onTimerEnd;
 
     void Start()
     {
@@ -31,6 +34,7 @@ public class TimeManager : MonoBehaviour
             {
                 timeRemaining = 0;
                 timerIsRunning = false;
+                onTimerEnd.Invoke();
             }
         }
     }

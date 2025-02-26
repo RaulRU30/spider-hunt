@@ -4,27 +4,44 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject hitEffect; // Efecto visual al ser alcanzado
-    public Animator enemyAnimator; // Referencia al animador si tienes una animación para el enemigo
+    public GameObject hitEffect; 
+    public Animator enemyAnimator; 
+    
+    private bool _isDead = false; 
+    
+    public AudioClip deathSound;
+    [Range(0f, 1f)]
+    public float deathVolume = 0.8f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bullet"))
+        if (other.CompareTag("Bullet") && !_isDead)
         {
-            Debug.Log("Bala colisionó con el enemigo!");
-
-            // Activar el efecto visual (ejemplo: explosión)
+            _isDead = true;
+            
+            if (deathSound != null)
+            {
+                Debug.Log("Reproduciendo sonido de muerte.");
+                AudioSource.PlayClipAtPoint(deathSound, transform.position, deathVolume);
+            }
+            
             if (hitEffect != null)
             {
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
             }
-
-            // Activar la animación de muerte
+            
             if (enemyAnimator != null)
             {
-                enemyAnimator.SetTrigger("Die"); // Activar el trigger "Die"
+                enemyAnimator.SetTrigger("Die");
             }
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 1f);
+            
+            if (GameController.instance != null)
+            {
+            }
+            
+            Destroy(other.gameObject);
+
         }
     }
 }
